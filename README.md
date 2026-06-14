@@ -56,7 +56,7 @@ A native **macOS** GUI for [Apple's `container` CLI](https://github.com/apple/co
 ## Requirements
 
 - **macOS 26.0+**
-- **Xcode 16+** (for building from source)
+- **Xcode 26+** (for building from source)
 - **[Apple `container` CLI](https://github.com/apple/container)** — the tool this app wraps
 
 ### Installing `container` CLI
@@ -123,7 +123,7 @@ Domain → (nothing)
 
 - **SwiftUI** — declarative UI with `NavigationSplitView` (3-column layout)
 - **Swift 6** — full concurrency safety with actors, Sendable, and strict checking
-- **`@Observable`** — SwiftUI observation (iOS 17+ / macOS 14+)
+- **`@Observable`** — SwiftUI observation
 - **Manual DI** — no third-party frameworks; `AppDIContainer` injects repositories
 - **`Process`** — wraps the `container` CLI via `CLIExecutor` actor
 

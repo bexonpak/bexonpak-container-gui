@@ -1,0 +1,30 @@
+name: DeepSeek Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]  # Trigger on PR creation or update
+
+permissions:
+  pull-requests: write  # Grant comment write permission
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required to get full diff
+
+      - name: DeepSeek Code Review
+        uses: deepseek-ai/code-review-action@v1  # Use latest version recommended
+        with:
+          model: deepseek-coder  # Use code-specific model recommended
+          # Custom review prompt to categorize issues and provide suggestions
+          review_prompt: |
+            You are a senior code review expert.
+            Please analyze the following code changes and categorize issues into [BUG], [SECURITY], [PERFORMANCE], [STYLE].
+            Please provide specific suggestions for improvement.
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
